@@ -1,4 +1,4 @@
-import { UserRepository } from "../../../repositories/user.repository"
+import { UserRepository } from "../../repositories/user.repository"
 import validator from "validator"
 import bcrypt from "bcrypt"
 

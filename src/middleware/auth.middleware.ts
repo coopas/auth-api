@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import jwt from 'jsonwebtoken';
-import { TokenRepository } from '../../repositories/token.repository';
+import { TokenRepository } from '../repositories/token.repository';
 
 const tokenRepository = new TokenRepository();
 
