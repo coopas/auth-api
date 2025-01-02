@@ -18,7 +18,7 @@ Esta é uma API de autenticação criada utilizando [Fastify](https://www.fastif
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/coopas/auth-api.git
    ```
 
 2. Instale as dependências:
