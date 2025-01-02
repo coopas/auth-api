@@ -1,0 +1,2 @@
+# auth-api
+ **Descrição do projeto:**  API de autenticação baseada em Fastify, que oferece funcionalidades essenciais como registro, login, logout e autenticação de usuários. O projeto utiliza tecnologias modernas como Prisma, bcrypt e JWT para garantir segurança e eficiência no gerenciamento de usuários e tokens de sessão. Ideal para aplicações que necessitam de um sistema de autenticação robusto e fácil de integrar.
