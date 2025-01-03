@@ -2,7 +2,10 @@ import { TokenRepository } from "../../repositories/token.repository"
 import jwt from "jsonwebtoken"
 
 const tokenRepository = new TokenRepository();
-const SECRET_KEY = String(process.env.JWT_SECRET);
+import dotenv from 'dotenv';
+dotenv.config();
+
+const SECRET_KEY = String(process.env.JWT_SECRET)
 
 interface LogoutProps {
     token: string
