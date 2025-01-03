@@ -18,11 +18,9 @@ export async function authRoutes(fastify: FastifyInstance, options: FastifyPlugi
         return new LogoutController().handle(request, reply)
     })
 
-
     fastify.get('/test', { preHandler: authMiddleware }, async (request, reply) => { // ROTA APENAS PARA TESTES
-        const user = request.user; 
-        console.log(user)
-        return { message: `Olá, ${user.info.first_name} ${user.info.last_name}` };
+        const user = request.user;
+        return { message: `Olá, ${user.userId}` };
       });
     
 }

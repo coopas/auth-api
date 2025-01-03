@@ -1,19 +1,21 @@
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { UserRepository } from "../../repositories/user.repository"
+import dotenv from 'dotenv';
+dotenv.config();
+
+const SECRET_KEY = String(process.env.JWT_SECRET)
 
 const userRepository = new UserRepository();
 
-const SECRET_KEY = String(process.env.JWT_SECRET)
-const EXPIRES_IN = process.env.EXPIRES_IN
-
 interface LoginProps {
     login: string,
-    password: string
+    password: string,
+    remember_me: boolean
 }
 
 class LoginService {
-    async execute({ login, password }: LoginProps) {
+    async execute({ login, password, remember_me }: LoginProps) {
 
         if (!login || !password) {
             throw new Error("Dados insuficientes")
@@ -26,7 +28,8 @@ class LoginService {
 
         if (await bcrypt.compare(password, user.password)) {
 
-            const token = jwt.sign({info: user}, SECRET_KEY, { expiresIn: EXPIRES_IN });
+            const TokenExpiresIn = remember_me ? "7d" : "1d";       
+            const token = jwt.sign({userId: user.id}, SECRET_KEY, { expiresIn: TokenExpiresIn || "1d" });
 
             return { token, message: "Logado com sucesso!" }
         } else {

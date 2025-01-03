@@ -30,7 +30,6 @@ Esta é uma API de autenticação criada utilizando [Fastify](https://www.fastif
    ```env
    PORT=3000
    JWT_SECRET=sua_chave_secreta
-   EXPIRES_IN=3600s
    DATABASE_URL=seu_url_de_conexao_prisma
    ```
 
@@ -110,7 +109,8 @@ Esta é uma API de autenticação criada utilizando [Fastify](https://www.fastif
 ```json
 {
   "login": "username ou email",
-  "password": "senha123"
+  "password": "senha123",
+  "remember_me": true
 }
 ```
 
@@ -148,7 +148,7 @@ Authorization: Bearer <token>
 **Resposta:**
 ```json
 {
-  "message": "Olá, Nome Sobrenome"
+  "message": "Olá, (ID do usuário)"
 }
 ```
 
@@ -158,13 +158,16 @@ Authorization: Bearer <token>
 
 ### Registro
 - Verifica se todos os campos obrigatórios estão presentes.
-- Verifica se o email ou nome de usuário já existe.
+- Verifica se o usuário está utilizando apenas caracteres permitidos.
 - Valida o formato do email.
+- Verifica o nível de segurança da senha.
+- Verifica se o email ou nome de usuário já existe.
 - Hasheia a senha com bcrypt e salva o usuário no banco de dados.
 
 ### Login
 - Busca o usuário pelo email ou nome de usuário.
 - Compara a senha fornecida com o hash armazenado.
+- Verifica se o usuário deseja que a sessão seja ou não lembrada.
 - Gera um token JWT com informações do usuário.
 
 ### Logout
